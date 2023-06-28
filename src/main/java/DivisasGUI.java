@@ -3,6 +3,8 @@ import com.formdev.flatlaf.FlatLightLaf;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class DivisasGUI {
     private JPanel mainPanel;
@@ -15,6 +17,7 @@ public class DivisasGUI {
 
     public DivisasGUI() {
         this.defaultListModel = new DefaultListModel<>();
+        this.validateMoneyInput();
         this.setMoneyList("Test");
         this.setMoneyList("Test1");
         this.setMoneyList("Test2");
@@ -24,6 +27,27 @@ public class DivisasGUI {
     public void setMoneyList(String s) {
         moneyList.setModel(defaultListModel);
         defaultListModel.addElement(s);
+    }
+
+    public void validateMoneyInput() {
+        this.moneyField.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent ke) {
+                String value = moneyField.getText();
+                int l = value.length();
+                if (ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9') {
+                    moneyField.setEditable(true);
+                } else if (ke.getKeyChar() == '.' && !isDotInText()){
+                    moneyField.setEditable(true);
+                } else if (ke.getKeyCode() == 8){
+                    moneyField.setEditable(true);
+                } else {
+                    moneyField.setEditable(false);
+                }
+            }
+        });
+    }
+    private boolean isDotInText() {
+        return this.moneyField.getText().contains(".");
     }
 
     public static void main(String[] args) {
