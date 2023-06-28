@@ -1,5 +1,4 @@
 import com.formdev.flatlaf.FlatDarculaLaf;
-import com.formdev.flatlaf.FlatLightLaf;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,10 +8,11 @@ import java.awt.event.KeyEvent;
 public class DivisasGUI {
     private JPanel mainPanel;
     private JButton submitButton;
-    private JTextField moneyField;
-    private JComboBox moneyType;
-    private JPanel welcomeMessage;
+    private JLabel tituloField;
+    private JComboBox dropToConvert;
+    private JLabel moneyResult;
     private JComboBox comboBox1;
+    private JTextField moneyField;
     private JLabel moneyValue;
     private DefaultListModel defaultListModel;
 
@@ -48,10 +48,11 @@ public class DivisasGUI {
     public static void main(String[] args) {
         JFrame frame = new JFrame("Conversor de divisas");
         try {
-            UIManager.setLookAndFeel(new FlatLightLaf());
+            UIManager.setLookAndFeel(new FlatDarculaLaf());
         } catch (Exception e) {}
         frame.setContentPane(new DivisasGUI().mainPanel);
         frame.setResizable(false);
+        //frame.getContentPane().setBackground(Color.getHSBColor(200,4,0.25f));
         frame.setSize(600,300);
         frame.setMinimumSize(new Dimension(600, 300));
         frame.setMaximumSize(new Dimension(720, Integer.MAX_VALUE));
