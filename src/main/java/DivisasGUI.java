@@ -9,24 +9,19 @@ import java.awt.event.KeyEvent;
 public class DivisasGUI {
     private JPanel mainPanel;
     private JButton submitButton;
-    private JList moneyList;
     private JTextField moneyField;
     private JComboBox moneyType;
     private JPanel welcomeMessage;
+    private JComboBox comboBox1;
+    private JLabel moneyValue;
     private DefaultListModel defaultListModel;
 
     public DivisasGUI() {
         this.defaultListModel = new DefaultListModel<>();
         this.validateMoneyInput();
-        this.setMoneyList("Test");
-        this.setMoneyList("Test1");
-        this.setMoneyList("Test2");
-        this.setMoneyList("Test3");
-        this.setMoneyList("Test4");
     }
     public void setMoneyList(String s) {
-        moneyList.setModel(defaultListModel);
-        defaultListModel.addElement(s);
+        this.moneyValue.setText(s);
     }
 
     public void validateMoneyInput() {
@@ -57,8 +52,8 @@ public class DivisasGUI {
         } catch (Exception e) {}
         frame.setContentPane(new DivisasGUI().mainPanel);
         frame.setResizable(false);
-        frame.setSize(720,300);
-        frame.setMinimumSize(new Dimension(720, 300));
+        frame.setSize(600,300);
+        frame.setMinimumSize(new Dimension(600, 300));
         frame.setMaximumSize(new Dimension(720, Integer.MAX_VALUE));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
