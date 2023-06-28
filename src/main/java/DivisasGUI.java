@@ -11,6 +11,20 @@ public class DivisasGUI {
     private JTextField moneyField;
     private JComboBox moneyType;
     private JPanel welcomeMessage;
+    private DefaultListModel defaultListModel;
+
+    public DivisasGUI() {
+        this.defaultListModel = new DefaultListModel<>();
+        this.setMoneyList("Test");
+        this.setMoneyList("Test1");
+        this.setMoneyList("Test2");
+        this.setMoneyList("Test3");
+        this.setMoneyList("Test4");
+    }
+    public void setMoneyList(String s) {
+        moneyList.setModel(defaultListModel);
+        defaultListModel.addElement(s);
+    }
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("Conversor de divisas");
@@ -25,5 +39,6 @@ public class DivisasGUI {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
+        new DivisasGUI();
     }
 }
