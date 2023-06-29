@@ -109,7 +109,7 @@ public class DivisasGUI {
         frame.setResizable(false);
         frame.setSize(600,300);
         frame.setMinimumSize(new Dimension(600, 300));
-        frame.setMaximumSize(new Dimension(720, Integer.MAX_VALUE));
+        frame.setMaximumSize(new Dimension(600, Integer.MAX_VALUE));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
         frame.pack();

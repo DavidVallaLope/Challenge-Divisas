@@ -32,11 +32,4 @@ public class Consumer {
         System.out.println(doPetition().body());
     }
 
-    public static void main(String[] args) {
-        try {
-            new Consumer("https://v6.exchangerate-api.com/v6/f3d6461eab028f51f28821f3/latest/MXN").printPetition();
-        } catch (URISyntaxException e) {
-            throw new RuntimeException(e);
-        }
-    }
 }
