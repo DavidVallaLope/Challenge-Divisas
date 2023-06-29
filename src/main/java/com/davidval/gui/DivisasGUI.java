@@ -1,4 +1,8 @@
+package com.davidval.gui;
+
 import com.formdev.flatlaf.FlatDarculaLaf;
+import com.formdev.flatlaf.FlatLaf;
+import com.formdev.flatlaf.FlatLightLaf;
 
 import javax.swing.*;
 import java.awt.*;
@@ -6,7 +10,8 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 public class DivisasGUI {
-    private JPanel mainPanel;
+    private boolean color;
+    private JPanel mainContent;
     private JButton submitButton;
     private JLabel tituloField;
     private JComboBox dropToConvert;
@@ -14,10 +19,11 @@ public class DivisasGUI {
     private JComboBox comboBox1;
     private JTextField moneyField;
     private JLabel moneyValue;
-    private DefaultListModel defaultListModel;
 
     public DivisasGUI() {
-        this.defaultListModel = new DefaultListModel<>();
+        this.color = true;
+        this.changeColor();
+        this.buildFrame();
         this.validateMoneyInput();
     }
     public void setMoneyList(String s) {
@@ -45,20 +51,41 @@ public class DivisasGUI {
         return this.moneyField.getText().contains(".");
     }
 
-    public static void main(String[] args) {
+    public void buildFrame() {
         JFrame frame = new JFrame("Conversor de divisas");
-        try {
-            UIManager.setLookAndFeel(new FlatDarculaLaf());
-        } catch (Exception e) {}
-        frame.setContentPane(new DivisasGUI().mainPanel);
+        frame.setContentPane(this.mainContent);
+        System.out.println(UIManager.getLookAndFeel().getName());
         frame.setResizable(false);
-        //frame.getContentPane().setBackground(Color.getHSBColor(200,4,0.25f));
         frame.setSize(600,300);
         frame.setMinimumSize(new Dimension(600, 300));
         frame.setMaximumSize(new Dimension(720, Integer.MAX_VALUE));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
         frame.setVisible(true);
+        frame.pack();
+    }
+
+    private void changeColor(FlatLaf flatLaf) {
+        try {
+            UIManager.setLookAndFeel(flatLaf);
+            SwingUtilities.updateComponentTreeUI(this.mainContent);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void changeColor() {
+        if (!color) {
+            changeColor(new FlatLightLaf());
+            this.mainContent.setBackground(new Color(243,243,242));
+            color = true;
+        } else {
+            changeColor(new FlatDarculaLaf());
+            this.mainContent.setBackground(new Color(61,63,64));
+            color = false;
+        }
+    }
+
+    public static void main(String[] args) {
         new DivisasGUI();
     }
 }
