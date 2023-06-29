@@ -2,12 +2,8 @@ package com.davidval.http;
 
 import com.davidval.business.Divisas;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.formdev.flatlaf.json.Json;
 
-import java.net.URISyntaxException;
-import java.util.HashMap;
 import java.util.Map;
 
 public class JsonMapper {
