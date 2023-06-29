@@ -14,7 +14,7 @@ public class Main {
         JsonMapper jsonMapper = new JsonMapper(new Consumer("https://v6.exchangerate-api.com/v6/<authkey>/latest/MXN"), divisas);
         jsonMapper.convertJsonToMap();
 
-        DivisasGUI gui = new DivisasGUI(divisas);
+        DivisasGUI gui = new DivisasGUI(divisas,false);
         gui.setDropToConvert(divisas.getMapOfDivisas().keySet());
     }
 }

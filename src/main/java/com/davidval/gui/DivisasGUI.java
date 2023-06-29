@@ -54,9 +54,9 @@ public class DivisasGUI {
         this.moneyValue = moneyValue;
     }
 
-    public DivisasGUI(Divisas divisas) {
+    public DivisasGUI(Divisas divisas, boolean flag) {
         this.divisas = divisas;
-        this.color = true;
+        this.color = flag;
         this.changeColor();
         this.buildFrame();
         this.validateMoneyInput();

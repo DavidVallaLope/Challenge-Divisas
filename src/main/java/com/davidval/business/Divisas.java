@@ -47,7 +47,7 @@ public class Divisas {
         if (this.fromCurrency.equals("MXN")) {
             return String.format("%.4f", this.fromValue * this.getValueOfDivisa(this.toCorrency));
         } else {
-            return String.format("%.4f",(1 / this.getValueOfDivisa(this.fromCurrency)) * this.getValueOfDivisa(this.toCorrency));
+            return String.format("%.4f",(this.fromValue / this.getValueOfDivisa(this.fromCurrency)) * this.getValueOfDivisa(this.toCorrency));
         }
     }
 
