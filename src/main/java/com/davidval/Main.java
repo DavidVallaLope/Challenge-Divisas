@@ -13,9 +13,7 @@ public class Main {
         Divisas divisas = new Divisas(new HashMap<>());
         JsonMapper jsonMapper = new JsonMapper(new Consumer("https://v6.exchangerate-api.com/v6/f3d6461eab028f51f28821f3/latest/MXN"), divisas);
         jsonMapper.convertJsonToMap();
-
-        System.out.println(divisas.getValueOfDivisa("USD"));
-
+        
         DivisasGUI gui = new DivisasGUI(divisas);
         gui.setDropToConvert(divisas.getMapOfDivisas().keySet());
     }

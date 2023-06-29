@@ -99,7 +99,6 @@ public class DivisasGUI {
     public void buildFrame() {
         JFrame frame = new JFrame("Conversor de divisas");
         frame.setContentPane(this.mainContent);
-        System.out.println(UIManager.getLookAndFeel().getName());
         frame.setResizable(false);
         frame.setSize(600,300);
         frame.setMinimumSize(new Dimension(600, 300));
