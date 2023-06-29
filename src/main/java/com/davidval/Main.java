@@ -1,0 +1,22 @@
+package com.davidval;
+
+import com.davidval.business.Divisas;
+import com.davidval.gui.DivisasGUI;
+import com.davidval.http.Consumer;
+import com.davidval.http.JsonMapper;
+
+import java.net.URISyntaxException;
+import java.util.HashMap;
+
+public class Main {
+    public static void main(String[] args) throws URISyntaxException {
+        Divisas divisas = new Divisas(new HashMap<>());
+        JsonMapper jsonMapper = new JsonMapper(new Consumer("https://v6.exchangerate-api.com/v6/f3d6461eab028f51f28821f3/latest/MXN"), divisas);
+        jsonMapper.convertJsonToMap();
+
+        System.out.println(divisas.getValueOfDivisa("USD"));
+
+        DivisasGUI gui = new DivisasGUI(divisas);
+        gui.setDropToConvert(divisas.getMapOfDivisas().keySet());
+    }
+}

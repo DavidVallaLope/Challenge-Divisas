@@ -1,23 +1,80 @@
 package com.davidval.business;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.util.HashMap;
 import java.util.Map;
 
 public class Divisas {
-    private Map<String, Double> mapOfDivisas;
+
+    @JsonIgnoreProperties({"result", "documentation", "terms_of_use","time_last_update_unix",
+    "time_last_update_utc","time_next_update_unix","time_next_update_utc","base_code"})
+    public abstract class MixIn { }
+    @JsonProperty("conversion_rates")
+    private Map<String, Map<String , Double>> mapOfDivisas;
+
+    private String fromCurrency;
+    private String toCorrency;
+    private double fromValue;
+    private double toValue;
+
+    public String getFromCurrency() {
+        return fromCurrency;
+    }
+
+    public void setFromCurrency(String fromCurrency) {
+        this.fromCurrency = fromCurrency;
+    }
+
+    public String getToCorrency() {
+        return toCorrency;
+    }
+
+    public void setToCorrency(String toCorrency) {
+        this.toCorrency = toCorrency;
+    }
+
+    public double getFromValue() {
+        return fromValue;
+    }
+
+    public void setFromValue(double fromValue) {
+        this.fromValue = fromValue;
+    }
+
+    public String getToValue() {
+        if (this.fromCurrency.equals("MXN")) {
+            return String.format("%.4f", this.fromValue * this.getValueOfDivisa(this.toCorrency));
+        } else {
+            return String.format("%.4f",(1 / this.getValueOfDivisa(this.fromCurrency)) * this.getValueOfDivisa(this.toCorrency));
+        }
+    }
+
+    public void setToValue(double toValue) {
+        this.toValue = toValue;
+    }
 
     public Divisas(Map map) {
         this.mapOfDivisas = map;
     }
 
-    public Map<String, Double> getMapOfDivisas() {
-        return mapOfDivisas;
+
+    public Map<String , Double> getMapOfDivisas() {
+        return mapOfDivisas.get("conversion_rates");
     }
 
-    public void setMapOfDivisas(Map<String, Double> mapOfDivisas) {
+    public void setMapOfDivisas(Map<String, Map<String , Double>> mapOfDivisas) {
         this.mapOfDivisas = mapOfDivisas;
     }
 
     public double getValueOfDivisa(String key) {
-        return this.mapOfDivisas.getOrDefault(key,1.0);
+        try {
+            return mapOfDivisas.get("conversion_rates").getOrDefault(key,1.0);
+        } catch (ClassCastException e) {
+            return 1.0;
+        }
+
     }
+
 }
