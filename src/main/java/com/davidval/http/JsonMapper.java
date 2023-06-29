@@ -19,7 +19,7 @@ public class JsonMapper {
 
     public void convertJsonToMap() {
         String json = consumer.doPetition().body();
-        objectMapper.addMixInAnnotations(Map.class, Divisas.MixIn.class);
+        //objectMapper.addMixInAnnotations(Map.class, Divisas.MixIn.class);
         try {
             divisas.setMapOfDivisas(objectMapper.readValue(json, Map.class));
         } catch (JsonProcessingException e) {

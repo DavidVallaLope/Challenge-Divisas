@@ -27,9 +27,4 @@ public class Consumer {
             throw new RuntimeException(e);
         }
     }
-
-    public void printPetition() {
-        System.out.println(doPetition().body());
-    }
-
 }
