@@ -43,11 +43,11 @@ public class Divisas {
         this.fromValue = fromValue;
     }
 
-    public String getToValue() {
+    public double getToValue() {
         if (this.fromCurrency.equals("MXN")) {
-            return String.format("%.4f", this.fromValue * this.getValueOfDivisa(this.toCorrency));
+            return this.fromValue * this.getValueOfDivisa(this.toCorrency);
         } else {
-            return String.format("%.4f",(this.fromValue / this.getValueOfDivisa(this.fromCurrency)) * this.getValueOfDivisa(this.toCorrency));
+            return (this.fromValue / this.getValueOfDivisa(this.fromCurrency)) * this.getValueOfDivisa(this.toCorrency);
         }
     }
 

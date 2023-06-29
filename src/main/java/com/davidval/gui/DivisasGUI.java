@@ -66,7 +66,7 @@ public class DivisasGUI {
                 divisas.setFromCurrency(dropToConvert1.getSelectedItem().toString());
                 divisas.setToCorrency(dropToConvert2.getSelectedItem().toString());
                 divisas.setFromValue(Double.parseDouble(moneyField.getText().toString()));
-                moneyResult.setText(divisas.getToValue());
+                moneyResult.setText(String.format("%.4f",divisas.getToValue()));
             }
         });
 
