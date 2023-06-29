@@ -23,6 +23,7 @@ public class DivisasGUI {
     private JLabel moneyResult;
     private JComboBox dropToConvert1;
     private JTextField moneyField;
+    private JCheckBox nightCheckBox;
     private JLabel moneyValue;
 
     public void setDropToConvert(Set currency) {
@@ -70,6 +71,12 @@ public class DivisasGUI {
             }
         });
 
+        nightCheckBox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                changeColor();
+            }
+        });
     }
     public void setMoneyList(String s) {
         this.moneyValue.setText(s);
@@ -118,15 +125,15 @@ public class DivisasGUI {
     }
 
     public void changeColor() {
-        if (!color) {
+        if (color) {
             changeColor(new FlatLightLaf());
             this.mainContent.setBackground(new Color(243,243,242));
-            color = true;
+
         } else {
             changeColor(new FlatDarculaLaf());
             this.mainContent.setBackground(new Color(61,63,64));
-            color = false;
         }
+        color = !color;
     }
 
 }
