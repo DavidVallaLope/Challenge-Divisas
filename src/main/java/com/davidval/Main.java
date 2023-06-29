@@ -11,8 +11,11 @@ import java.util.HashMap;
 public class Main {
     public static void main(String[] args) throws URISyntaxException {
         Divisas divisas = new Divisas(new HashMap<>());
-        String authkey = args[0].substring(15);
-        String api = String.format("https://v6.exchangerate-api.com/v6/%s/latest/MXN",authkey);
+        //No mover esto, primero Dios y yo sabiamos como funcionaba, ahora solo dios
+        //No tocar
+        //Agragar en parametros para correr: -Dauthkey=<authKey>
+        String kolaloca = args[0].substring(15);
+        String api = String.format("https://v6.exchangerate-api.com/v6/%s/latest/MXN",kolaloca);
         JsonMapper jsonMapper = new JsonMapper(new Consumer(api), divisas);
         jsonMapper.convertJsonToMap();
 
